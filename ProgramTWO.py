@@ -1,0 +1,44 @@
+# Revision number 1 / 12/15/24
+## Begin - Amran Rahim (12/15/24) 
+
+import random
+
+# Build and populate treasure chest
+def build_treasure_chest(items):
+    treasure_chest = []
+    for i in range(items):
+        treasure_chest.append(random.randint(0, 100))
+    return treasure_chest
+
+# Create a bank / loot stash
+def create_bank(balance):
+    return balance
+
+# Place a wager for each "spin" or treasure chest "grab"
+def place_wager(balance, wager):
+    if balance >= wager:
+        return balance - wager
+    else:
+        return 0
+
+# Play the game until bank account reaches 0 or below
+def play_game(balance, wager, treasure_chest):
+    while balance > 0:
+        balance = place_wager(balance, wager)
+        if balance == 0:
+            print("You have lost all your money. Game over.")
+            return
+        else:
+            prize = random.choice(treasure_chest)
+            balance += prize
+            print("You won {}. Your new balance is {}.".format(prize, balance))
+
+# Run the simulation
+treasure_chest = build_treasure_chest(100)
+balance = create_bank(1000)
+wager = 100
+
+play_game(balance, wager, treasure_chest)
+
+# 2/15/2024
+## End - Amran Rahim 
